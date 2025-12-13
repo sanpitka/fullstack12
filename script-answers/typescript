@@ -1,0 +1,12 @@
+Script started on 2025-12-13 16:23:04+02:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="111" LINES="20"]
+[?2004h]0;sanpitka@SP-Dell: /mnt/c/Users/sanpi[01;32msanpitka@SP-Dell[00m:[01;34m/mnt/c/Users/sanpi[00m$ mkdir -p /use[Kr/src/app
+[?2004lmkdir: cannot create directory ‘/usr/src/app’: Permission denied
+[?2004h]0;sanpitka@SP-Dell: /mnt/c/Users/sanpi[01;32msanpitka@SP-Dell[00m:[01;34m/mnt/c/Users/sanpi[00m$ mkd[K[K[Ksudo mkdir -p /usr/src/app
+[?2004l[sudo] password for sanpitka: 
+[?2004h]0;sanpitka@SP-Dell: /mnt/c/Users/sanpi[01;32msanpitka@SP-Dell[00m:[01;34m/mnt/c/Users/sanpi[00m$ touch /usr/src/app/index.js
+[?2004ltouch: cannot touch '/usr/src/app/index.js': Permission denied
+[?2004h]0;sanpitka@SP-Dell: /mnt/c/Users/sanpi[01;32msanpitka@SP-Dell[00m:[01;34m/mnt/c/Users/sanpi[00m$ sudo touch /usr/src/app/index.js
+[?2004l[?2004h]0;sanpitka@SP-Dell: /mnt/c/Users/sanpi[01;32msanpitka@SP-Dell[00m:[01;34m/mnt/c/Users/sanpi[00m$ exit
+[?2004lexit
+
+Script done on 2025-12-13 16:24:23+02:00 [COMMAND_EXIT_CODE="0"]
