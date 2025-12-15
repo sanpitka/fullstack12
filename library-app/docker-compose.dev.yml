@@ -1,0 +1,58 @@
+services:
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    container_name: reverse-proxy-dev
+    depends_on:
+      - library-front
+      - library-back
+
+  library-front:
+    image: library-front-dev
+    build:
+      context: ./library-front
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./library-front/:/usr/src/app
+      - /usr/src/app/node_modules
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]
+
+  library-back:
+    image: library-back-dev
+    build:
+      context: ./library-back
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./library-back/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 4000:4000
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - MONGO_URL=mongodb://root:example@mongo:27017/the_database?authSource=admin
+    depends_on:
+      - mongo
+      - redis
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: the_database
+    volumes:
+      - ./library-back/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - mongo_data:/data/db
+
+  redis:
+    image: redis
+    command: ['redis-server', '--appendonly', 'yes']
+    volumes:
+      - redis_data:/data
+
+volumes:
+  mongo_data:
+  redis_data:
