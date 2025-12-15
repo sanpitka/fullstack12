@@ -21,10 +21,10 @@ const authLink = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
-const httpLink = new HttpLink({ uri: "http://localhost:4000/graphql" });
+const httpLink = new HttpLink({ uri: "http://localhost:8080/api/graphql" });
 
 const wsLink = new GraphQLWsLink(createClient({
-  url: 'ws://localhost:4000',
+  url: 'ws://localhost:8080/api/graphql',
 }))
 
 const splitLink = ApolloLink.split(
